@@ -1,0 +1,12 @@
+{
+  "name": "linear-regression-js",
+  "version": "1.0.0",
+  "description": "Library used to get the linear regression for x, y properties and validate using the calculated R2 coefficient.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["linear", "regression", "R2", "coefficient"],
+  "author": "José Luis Pérez Olvera",
+  "license": "ISC"
+}
