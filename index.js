@@ -15,11 +15,27 @@ class LinearRegression {
      * @constructor
      * @description Received a bidimensional array that contains the matrix for X values and Y Values.
      * @author José Luis Pérez Olvera <sistem_pp@hotmail.com>
-     * @param {Array} matrix
+     * @param {Array} matrix The given matrix to calculate the linear regression.
+     * @param {Number} size The length for X and Y axis values.
      * @example
      * new LinearRegression([[0, 1, 2, 4, 5], [3, 4, 2, 4, 5]])
      */
     constructor(matrix, size = 0) {
+        this.updateMatrix(matrix, size);
+    }
+
+    /**
+     * @function
+     * @description Update the matrix variables for the linear regression calculation.
+     * @author José Luis Pérez Olvera <sistem_pp@hotmail.com>
+     * @version 1.0
+     * @since 1.0
+     * @param {Array} matrix The matrix to be used to calcuate the linear regression.
+     * @param {Number} size The length for X and Y axis.
+     * @example
+     * updateMatrix([[1, 2, 3], [-1, 3, 4]], 3)
+     */
+    updateMatrix(matrix, size = 0) {
         this.matrix = matrix;
 
         this._x = calcs.getAverage(this.matrix[0]);

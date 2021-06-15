@@ -4,7 +4,7 @@
   "description": "Get a calculated linear regression for a matrix with X and Y axis.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha index.test.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/Pptongo/linear-regression-js/issues"
   },
-  "homepage": "https://github.com/Pptongo/linear-regression-js#readme"
+  "homepage": "https://github.com/Pptongo/linear-regression-js#readme",
+  "devDependencies": {
+    "mocha": "^9.0.0",
+    "request": "^2.88.2"
+  }
 }
