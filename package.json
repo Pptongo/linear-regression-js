@@ -1,6 +1,6 @@
 {
   "name": "linearregressionjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get a calculated linear regression for a matrix with X and Y axis.",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -47,8 +47,21 @@
     }
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "eslint --fix", "git add"],
-    "*.{json,md}": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
-  "files": ["dist", "index.d.ts", "index.js.flow", "package.json", "README.md"]
+  "files": [
+    "dist",
+    "index.d.ts",
+    "index.js.flow",
+    "package.json",
+    "README.md"
+  ]
 }
