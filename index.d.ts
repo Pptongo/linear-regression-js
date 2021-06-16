@@ -1,10 +1,4 @@
-declare namespace LinearRegression {
-    export interface LinearRegressionModel {
-        name: 'linearRegression';
-    }
-}
-
-declare class LinearRegression {
+export default class LinearRegression {
     constructor(matrix: [[number]], size: number);
 
     updateMatrix(matrix: [[number]], size: number);
@@ -13,5 +7,3 @@ declare class LinearRegression {
 
     getR2();
 }
-
-export = LinearRegression;
