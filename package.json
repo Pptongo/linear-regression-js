@@ -1,6 +1,6 @@
 {
   "name": "linearregressionjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Get a calculated linear regression for a matrix with X and Y axis.",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
