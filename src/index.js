@@ -1,4 +1,4 @@
-const calcs = require('./calcs')
+const { getAverage, calculateM, calculateC, calculateYPoint, calculateR2Coefficient } = require("./calcs");
 
 /**
  * @class
@@ -38,8 +38,8 @@ class LinearRegression {
     updateMatrix(matrix, size = 0) {
         this.matrix = matrix;
 
-        this._x = calcs.getAverage(this.matrix[0]);
-        this._y = calcs.getAverage(this.matrix[1]);
+        this._x = getAverage(this.matrix[0]);
+        this._y = getAverage(this.matrix[1]);
 
         this.size = size > 0 ? size : this.matrix[0].length;
     }
@@ -53,26 +53,44 @@ class LinearRegression {
      * @param {Number} min The initial value in X axis
      * @param {Number} max The last value in X axis
      * @example
-     * calculate(0, 5, 1) -> returns [[0, 1, 2, 3, 4, 5], [2.4, 2.8, 3.2, 3.6, 4, 4.4]]
+     * calculate(1, 5, 1) -> returns [[0, 1, 2, 3, 4, 5], [2.8, 3.2, 3.6, 4, 4.4]]
      */
     calculate(min = null, max = null, incrementBy = 1) {
         this.linearRegression = [[], []];
 
-        this._m = calcs.calculateM(this.size, this.matrix, this._x, this._y);
-        this._c = calcs.calculateC(this._m, this._x, this._y);
+        this._m = calculateM(this.size, this.matrix, this._x, this._y);
+        this._c = calculateC(this._m, this._x, this._y);
 
-        let step = min;
+        const lastPoint = max | Math.max(...this.matrix[0]);
+        let curPoint = min | Math.min(...this.matrix[0]);
 
-        while (step <= max) {
-            this.linearRegression[0].push(step);
-            this.linearRegression[1].push(calcs.calculateYPoint(this._m, step, this._c));
+        while (curPoint <= lastPoint) {
+            this.linearRegression[0].push(curPoint);
+            this.linearRegression[1].push(calculateYPoint(this._m, curPoint, this._c));
 
-            step += incrementBy;
+            curPoint += incrementBy;
         }
 
         return this.linearRegression;
     }
 
+    /**
+     * @method
+     * @description Calculate the R2 coefficiente to validate the distance between linear regression with the current matrix.
+     * @author José Luis Pérez Olvera <sistem_pp@hotmail.com>
+     * @version 1.0
+     * @since 1.0
+     * @example
+     * getR2() -> returns 0.3076923076923078
+     */
+    getR2() {
+        if (this.linearRegression) {
+            return calculateR2Coefficient(this.matrix[1], this._y, this.linearRegression[1]);
+        }
+
+        return null;
+    }
+
 }
 
-exports.linearRegression = matrix => new LinearRegression(matrix);
+export default LinearRegression;

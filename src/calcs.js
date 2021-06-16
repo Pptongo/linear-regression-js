@@ -7,7 +7,7 @@
  * @param {Array} values A set of values in an array.
  * @returns {Number} The average result from the array.
  * @example
- * getAverage([2, 3, 5]) -> returns 3.33
+ * getAverage([1, 2, 3, 4, 5]) -> returns 3
  */
 exports.getAverage = (values = []) => {
     const sum = values ? values.reduce((a, b) => a + b, 0) : undefined;
@@ -48,7 +48,7 @@ exports.calculateM = (size = 0, matrix = [], _x = undefined, _y = undefined) => 
 
 /**
  * @method
- * @description Calculate the C value for the Linear Regression formula. Formula: y=mx+c
+ * @description Calculate the C value for the Linear Regression formula. Formula: y = mx + c
  * @author José Luis Pérez Olvera <sistem_pp@hotmail.com>
  * @version 1.0
  * @since 1.0
@@ -65,7 +65,7 @@ exports.calculateC = (m = undefined, _x = undefined, _y = undefined) => {
 
 /**
  * @method
- * @description Get the Y axis point for the current X point. Formula: y=mx+c
+ * @description Get the Y axis point for the current X point. Formula: y = mx + c
  * @author José Luis Pérez Olvera <sistem_pp@hotmail.com>
  * @version 1.0
  * @since 1.0
@@ -78,4 +78,23 @@ exports.calculateC = (m = undefined, _x = undefined, _y = undefined) => {
  */
 exports.calculateYPoint = (m, x, c) => {
     return (m * x) + c;
+}
+
+/**
+ * @method
+ * @description Calculate the R2 coefficient for the given linear regression. Formula: R^2 = ∑(yp - y~)^2 / ∑(y - y~)^2
+ * @author José Luis Pérez Olvera <sistem_pp@hotmail.com>
+ * @version 1.0
+ * @since 1.0
+ * @param {Array} ys The array with Y axis values.
+ * @param {Number} _y The average of Y axis values.
+ * @param {Array} yps The array with all predictable Y axis values from linear regression.
+ * @example
+ * calculateR2Coefficient([3, 4, 2, 4, 5], 3.6, [2.8, 3.2, 3.6, 4.0, 4.4]) -> returns 0.3076923076923078
+ */
+exports.calculateR2Coefficient = (ys, _y, yps) => {
+    const dividend = yps.map(yp => (yp - _y) ** 2).reduce((a, b) => a + b, 0);
+    const divider = ys.map(y => (y - _y) ** 2).reduce((a, b) => a + b, 0);
+
+    return dividend / divider;
 }

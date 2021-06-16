@@ -1,10 +1,16 @@
 {
-  "name": "@linearregressionjs/linearregressionjs",
+  "name": "linearregressionjs",
   "version": "1.0.0",
   "description": "Get a calculated linear regression for a matrix with X and Y axis.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.mjs",
+  "source": "src/index.js",
   "scripts": {
-    "test": "mocha index.test.js"
+    "test": "jest",
+    "prebuild": "npm test",
+    "build": "microbundle",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,7 +29,26 @@
   },
   "homepage": "https://github.com/Pptongo/linear-regression-js#readme",
   "devDependencies": {
-    "mocha": "^9.0.0",
-    "request": "^2.88.2"
-  }
+    "@babel/preset-env": "^7.14.5",
+    "babel-jest": "^27.0.2",
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "lint-staged": "^11.0.0",
+    "microbundle": "^0.13.3",
+    "prettier": "^2.3.1"
+  },
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "eslint --fix", "git add"],
+    "*.{json,md}": ["prettier --write", "git add"]
+  },
+  "files": ["dist", "index.d.ts", "index.js.flow", "package.json", "README.md"]
 }
